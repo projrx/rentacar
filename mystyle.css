@@ -1,0 +1,27 @@
+
+
+.slide{
+	max-height: 600px;
+}
+.fslider {
+	max-height: 600px;
+}
+.slider-wrap{
+	max-height: 600px;
+}
+
+
+.portfolio-filter li.activeFilter a {
+    background-color: #827d7d;
+
+}
+
+.color{
+	color:#98483d;
+	
+}
+
+.bgcolor{
+	background: #98483d
+	color:#fff;
+}
