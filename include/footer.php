@@ -174,7 +174,8 @@
 
 					<div class="col_half">
 						Copyrights &copy; 2014 All Rights Reserved by A1Cars Inc.<br>
-						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a></div>
+						<div class="copyright-links"><a href="#">Terms of Use</a> / <a href="#">Privacy Policy</a> - Powered by: <a href="http://infotech4it.com" target="blank">InfoTech4it</a>
+							</div>
 					</div>
 
 					<div class="col_half col_last tright">
@@ -222,7 +223,7 @@
 
 						<div class="clear"></div>
 
-						<i class="icon-envelope2"></i> info@rentacars.com <span class="middot">&middot;</span> <i class="icon-headphones"></i> +92-300-6586369 <span class="middot">&middot;</span> <i class="icon-facebook"></i> RentaCars
+						<i class="icon-envelope"></i> info@rentacars.com <span class="middot">&middot;</span> <i class="icon-phone"></i> +92-300-6586369 <span class="middot">&middot;</span> <i class="icon-facebook"></i> RentaCars <span class="middot">&middot;</span> <i class="icon-twitter"></i> RentaCars
 					</div>
 
 				</div>

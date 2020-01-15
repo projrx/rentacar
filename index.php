@@ -11,6 +11,16 @@
 
 	<?php $link="home" ?>
 
+	<style type="text/css">
+		.blogo{
+			max-width: 100px;
+		}
+		[class^="icon-"]{
+
+			font-size: 15px;
+		}
+	</style>
+
 </head>
 
 <body class="stretched">
@@ -30,7 +40,7 @@
 
 			<div class=" clearfix">
 
-				<div class="fslider" data-easing="easeInQuad">
+			<div class="fslider" data-easing="easeInQuad">
 					<div class="flexslider">
 						<div class="slider-wrap">
 							<div class="slide" data-thumb="images/slider/1.jpg">
@@ -249,6 +259,41 @@
 		<br>
 		<hr>
 
+			<div class="container">
+					<div class="fancy-title title-center title-dotted-border">
+						<h3>Search More Cars by Brands:</h3>
+					</div>
+
+					<div id="oc-images" class="owl-carousel image-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="true" data-items-xs="2" data-items-sm="3" data-items-lg="4" data-items-xl="5">
+
+						<div class="oc-item">
+							<a href="cars.php"><img class="blogo" src="images/blogo/1.png" alt="Image 1"></a>
+						</div>
+						<div class="oc-item">
+							<a href="cars.php"><img class="blogo" src="images/blogo/2.png" alt="Image 1"></a>
+						</div>
+						<div class="oc-item">
+							<a href="cars.php"><img class="blogo" src="images/blogo/4.png" alt="Image 1"></a>
+						</div>
+						<div class="oc-item">
+							<a href="cars.php"><img class="blogo" src="images/blogo/3.png" alt="Image 1"></a>
+						</div>
+						<div class="oc-item">
+							<a href="cars.php"><img class="blogo" src="images/blogo/5.png" alt="Image 1"></a>
+						</div>
+						<div class="oc-item">
+							<a href="cars.php"><img class="blogo" src="images/blogo/6.png" alt="Image 1"></a>
+						</div>
+
+
+					</div>
+
+
+					<div class="clear"></div>
+				</div>
+			</div>
+		<hr>
+
 
 
 				<div class="section topmargin-lg">
@@ -258,8 +303,8 @@
 							<div class="col-md-6">
 
 						<div class="heading-block">
-							<h3>Reliable Rent a Car.</h3>
-							<span>Benchmarking your car's performance helps you make great choices for your business.</span>
+							<h3 style="color: white">Reliable Rent a Car.</h3>
+							<span class="text-white">Benchmarking your car's performance helps you make great choices for your business.</span>
 						</div>
 
 
@@ -273,6 +318,7 @@
 							</div>
 					</div>
 				</div>
+			</div>
 
 <br>
 <br>

@@ -1,14 +1,21 @@
 
 
 .slide{
-	max-height: 600px;
+	max-height: 400px;
 }
 .fslider {
-	max-height: 600px;
+	max-height: 400px;
 }
 .slider-wrap{
-	max-height: 600px;
+	max-height: 400px;
 }
+
+.section {
+
+    background-color: #7a3931;
+    color: #fff;
+}
+
 
 
 .portfolio-filter li.activeFilter a {
