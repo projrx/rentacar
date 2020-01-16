@@ -23,5 +23,6 @@
 
 
 	<link rel="stylesheet" href="css/icons/style.css" type="text/css" />
+	<link rel="stylesheet" href="css/car.css" type="text/css" />
 
 	<link rel="stylesheet" href="mystyle.css" type="text/css" />
