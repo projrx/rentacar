@@ -1,6 +1,7 @@
 
+
 					<ul class="list-group">
-						<li class="list-group-item current">
+						<li class="list-group-item">
 							<a href="dashboard.php" >Dashoard</a>
 
 
@@ -15,7 +16,7 @@
 
 						</li>
 						<li class="list-group-item">
-							<a href="invoices.php" >Invoices</a>
+							<a href="orders.php" >Orders</a>
 
 						</li>
 						<li class="list-group-item">

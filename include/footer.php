@@ -223,7 +223,7 @@
 
 						<div class="clear"></div>
 
-						<i class="icon-envelope"></i> info@rentacars.com <span class="middot">&middot;</span> <i class="icon-phone"></i> +92-300-6586369 <span class="middot">&middot;</span> <i class="icon-facebook"></i> RentaCars <span class="middot">&middot;</span> <i class="icon-twitter"></i> RentaCars
+						<i class="icon-envelope"></i> <?php echo $sitemail ?> <span class="middot">&middot;</span> <i class="icon-phone"></i> <?php echo $sitephone ?> <span class="middot">&middot;</span> <i class="icon-facebook"></i><a style="color:#000" href="<?php echo $facebook ?>"> <?php echo 	$sitename ?></a> <span class="middot">&middot;</span> <i class="icon-youtube"></i> <a style="color:#000"  href="<?php echo $youtube ?>"> <?php echo 	$sitename ?></a>
 					</div>
 
 				</div>

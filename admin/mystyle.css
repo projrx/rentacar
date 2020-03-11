@@ -1,0 +1,26 @@
+
+.main-menu{
+	position: fixed;
+}
+
+
+.header-navbar{
+	position: fixed !important;
+}
+
+.table{
+	width: 100%;
+
+}
+
+html body .content.app-content {
+    overflow: hidden;
+    background: #98483d;
+}
+
+
+.copyright-links a {
+	
+    color: #333 !important;
+
+}

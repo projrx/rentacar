@@ -23,6 +23,18 @@
 
 }
 
+body {
+    line-height: 1.5;
+    color: #555;
+    font-family: 'Lato', sans-serif;
+    background: #fff !important;
+}
+
+a {
+	text-decoration: none !important;
+	color: #98463d !important;
+}
+
 .color{
 	color:#98483d;
 	
@@ -31,4 +43,13 @@
 .bgcolor{
 	background: #98483d
 	color:#fff;
+}
+
+.badge{
+	background: #98483d;
+    color: #fff;
+    border-radius: 50px;
+    padding: 4px 6px;
+    font-size: 12px;
+
 }

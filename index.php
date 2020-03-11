@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if(isset($_SESSION['user'])){
+ $username= $_SESSION['user'];  // Initializing Session with value of PHP Variable
+ $userid= $_SESSION['userid'];  // Initializing Session with value of PHP Variable
+}
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -20,7 +27,6 @@
 			font-size: 15px;
 		}
 
-
 		input[type="radio"] {
 			    height: 20px;
     width: 20px;
@@ -28,6 +34,19 @@
     vertical-align: middle;
     margin-right: 10px;
 	}
+
+
+
+		label{
+			color: #000;
+			font-size: 12px;
+		}
+
+		h6, .h6 {
+    font-size: 1rem;
+    color: #7a3931;
+    margin-top: 20px;
+}
 
 
 	</style>
@@ -54,38 +73,30 @@
 			<div class="fslider" data-easing="easeInQuad">
 					<div class="flexslider">
 						<div class="slider-wrap">
+
+      <?php
+
+      $rows =mysqli_query($con,"SELECT * FROM slider ORDER BY ordr" ) or die(mysqli_error($con));
+      $n=0;
+
+      while($row=mysqli_fetch_array($rows)){
+
+        $id = $row['id']; 
+        $name = $row['name']; 
+        $img = $row['img']; 
+        $ordr = $row['ordr']; 
+        ?>
 							<div class="slide" data-thumb="images/slider/1.jpg">
 								<a href="#">
-									<img src="images/slider/1.jpg" alt="Slide 2">
+									<img src="images/slider/<?php echo $img ?>" alt="Slide 2">
 									<div class="flex-caption slider-caption-bg slider-caption-top-right">
-										Brand New Cars
+										<?php echo $name ?>
 									</div>
 								</a>
 							</div>
-							<div class="slide" data-thumb="images/slider/3.jpg">
-								<a href="#">
-									<img src="images/slider/3.jpg" alt="Slide 3">
-									<div class="flex-caption slider-caption-bg slider-caption-top-right">
-										Best In Class
-									</div>
-								</a>
-							</div>
-							<div class="slide" data-thumb="images/slider/2.jpg">
-								<a href="#">
-									<img src="images/slider/2.jpg" alt="Slide 4">
-									<div class="flex-caption slider-caption-bg slider-caption-top-right">
-										Rent Your Ride
-									</div>
-								</a>
-							</div>
-							<div class="slide" data-thumb="images/slider/3.jpg">
-								<a href="#">
-									<img src="images/slider/3.jpg" alt="Slide 5">
-									<div class="flex-caption slider-caption-bg slider-caption-top-right">
-										More Heading Titles Here
-									</div>
-								</a>
-							</div>
+
+						<?php } ?>
+
 						</div>
 					</div>
 				</div>
@@ -96,6 +107,20 @@
 
 
 
+ <?php
+
+    $rows =mysqli_query($con,"SELECT * FROM home where id=1 " ) or die(mysqli_error($con));
+    
+
+    while($row=mysqli_fetch_array($rows)){
+
+
+      $topdesp = $row['topdesp'];
+      $bpost = $row['post'];
+      $bimg = $row['img'];
+
+    }
+      ?>
 
 		<section id="content">
 
@@ -103,9 +128,7 @@
 
 				<div class="promo promo-light promo-full bottommargin-lg header-stick notopborder">
 					<div class="container clearfix">
-						<h3>Call us today at <span>+92.22.57412541</span> or Email us at <span>info@rentacar.com</span></h3>
-						<span>We strive to provide Our Drivers with Top Notch Support to make their Rides Experience Easy and Informative</span>
-						<a href="contact.php" class="button button-dark button-xlarge button-rounded">Contact Us</a>
+						<?php echo $topdesp ?>
 					</div>
 				</div>
 
@@ -166,94 +189,63 @@
 					============================================= -->
 					<div id="posts" class="post-grid grid-container grid-3 clearfix" data-layout="fitRows">
 
-						<div class="entry clearfix">
-							<div class="entry-image">
-								<a href="images/cars/1.jpg" data-lightbox="image"><img class="image_fade" src="images/cars/2.jpg" alt="Standard Post with Image"></a>
-							</div>
-							<div class="entry-title">
-								<h2><a href="blog-single.html">Toyota Preview Car</a></h2>
-							</div>
-							<ul class="entry-meta clearfix">
-								<li><i class="icon-car-meter"></i> 15000</li>
-								<li><i class="icon-car-fuel2"></i> 	Petrol</li>
-								<li><a href="#"><i class="icon-camera-retro"></i></a></li>
-							</ul>
-						</div>
+
+						      <?php
+
+      $rows =mysqli_query($con,"SELECT * FROM car WHERE feat=1 ORDER BY id desc " ) or die(mysqli_error($con));
+      $n=0;
+      while($row=mysqli_fetch_array($rows)){
 
 
-						<div class="entry clearfix">
-							<div class="entry-image">
-								<a href="images/cars/1.jpg" data-lightbox="image"><img class="image_fade" src="images/cars/1.jpg" alt="Standard Post with Image"></a>
-							</div>
-							<div class="entry-title">
-								<h2><a href="blog-single.html">Toyota Preview Car</a></h2>
-							</div>
-							<ul class="entry-meta clearfix">
-								<li><i class="icon-car-meter"></i> 15000</li>
-								<li><i class="icon-car-fuel2"></i> 	Petrol</li>
-								<li><a href="#"><i class="icon-camera-retro"></i></a></li>
-							</ul>
-						</div>
+        $id = $row['id']; 
+        $name = $row['name']; 
+        $brand = $row['brand']; 
+        $model = $row['model']; 
+        $img = $row['img0']; 
+        $price = $row['price']; 
+        $book = $row['book']; 
+        $feat = $row['feat']; 
+        $datec = $row['datec']; 
+
+        $engine = $row['engine']; 
+        $enginec = $row['enginec']; 
+        $fuel = $row['fuel']; 
+        $millage = $row['millage']; 
+        $trans = $row['trans']; 
+        $gears = $row['gears']; 
+        $dist = $row['dist']; 
 
 
-						<div class="entry clearfix">
-							<div class="entry-image">
-								<a href="images/cars/1.jpg" data-lightbox="image"><img class="image_fade" src="images/cars/3.jpg" alt="Standard Post with Image"></a>
-							</div>
-							<div class="entry-title">
-								<h2><a href="blog-single.html">Toyota Preview Car</a></h2>
-							</div>
-							<ul class="entry-meta clearfix">
-								<li><i class="icon-car-meter"></i> 15000</li>
-								<li><i class="icon-car-fuel2"></i> 	Petrol</li>
-								<li><a href="#"><i class="icon-camera-retro"></i></a></li>
-							</ul>
-						</div>
-
+        ?>
 
 						<div class="entry clearfix">
 							<div class="entry-image">
-								<a href="images/cars/4.jpg" data-lightbox="image"><img class="image_fade" src="images/cars/1.jpg" alt="Standard Post with Image"></a>
+								<a href="images/cars/<?php echo $img ?>" data-lightbox="image"><img class="image_fade" src="images/cars/<?php echo $img ?>" alt="Standard Post with Image"></a>
 							</div>
 							<div class="entry-title">
-								<h2><a href="blog-single.html">Toyota Preview Car</a></h2>
+								<?php   $rowsx =mysqli_query($con,"SELECT name FROM brands WHERE id=$brand LIMIT 1" ) or die(mysqli_error($con));
+       while($rowx=mysqli_fetch_array($rowsx)){
+        echo $rowx['name']; } ?>
+								<h2><a href="car.php?id=<?php echo $id ?>"><?php echo $name ?></a></h2>
 							</div>
-							<ul class="entry-meta clearfix">
-								<li><i class="icon-car-meter"></i> 15000</li>
-								<li><i class="icon-car-fuel2"></i> 	Petrol</li>
-								<li><a href="#"><i class="icon-camera-retro"></i></a></li>
-							</ul>
+							<div class="row no-gutters car-p-features font-primary clearfix">
+									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-cogs"></i><span> <?php echo $engine ?> CC</span></div>
+
+									<div style="text-transform: capitalize;" class="col-lg-4 col-6 nopadding"><i class="icon-car-pump"></i><span> <?php echo $fuel ?></span></div>
+
+									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-fuel2"></i><span> <?php echo $millage ?>kmpl</span></div>
+
+									<div style="text-transform: capitalize;" class="col-lg-4 col-6 nopadding"><i class="icon-car-signal2"></i><span> <?php echo $trans ?></span></div>
+
+									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-meter"></i><span> <?php echo number_format($dist) ?> KM</span></div>
+
+									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-care"></i><span> <?php echo $model ?></span></div>
+								</div>
 						</div>
 
-
-						<div class="entry clearfix">
-							<div class="entry-image">
-								<a href="images/cars/1.jpg" data-lightbox="image"><img class="image_fade" src="images/cars/6.jpg" alt="Standard Post with Image"></a>
-							</div>
-							<div class="entry-title">
-								<h2><a href="blog-single.html">Toyota Preview Car</a></h2>
-							</div>
-							<ul class="entry-meta clearfix">
-								<li><i class="icon-car-meter"></i> 15000</li>
-								<li><i class="icon-car-fuel2"></i> 	Petrol</li>
-								<li><a href="#"><i class="icon-camera-retro"></i></a></li>
-							</ul>
-						</div>
+					<?php } ?>
 
 
-						<div class="entry clearfix">
-							<div class="entry-image">
-								<a href="images/cars/1.jpg" data-lightbox="image"><img class="image_fade" src="images/cars/5.jpg" alt="Standard Post with Image"></a>
-							</div>
-							<div class="entry-title">
-								<h2><a href="blog-single.html">Toyota Preview Car</a></h2>
-							</div>
-							<ul class="entry-meta clearfix">
-								<li><i class="icon-car-meter"></i> 15000</li>
-								<li><i class="icon-car-fuel2"></i> 	Petrol</li>
-								<li><a href="#"><i class="icon-camera-retro"></i></a></li>
-							</ul>
-						</div>
 
 
 					</div><!-- #posts end -->
@@ -278,24 +270,25 @@
 
 					<div id="oc-images" class="owl-carousel image-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="true" data-items-xs="2" data-items-sm="3" data-items-lg="4" data-items-xl="5">
 
+ <?php
+
+      $rows =mysqli_query($con,"SELECT * FROM brands ORDER BY ordr" ) or die(mysqli_error($con));
+      $n=0;
+
+      while($row=mysqli_fetch_array($rows)){
+
+        $id = $row['id']; 
+        $name = $row['name']; 
+        $img = $row['img']; 
+        $ordr = $row['ordr']; 
+        ?>
+
 						<div class="oc-item">
-							<a href="cars.php"><img class="blogo" src="images/blogo/1.png" alt="Image 1"></a>
+							<a href="cars.php"><img class="blogo" src="images/brands/<?php echo $img ?>" alt="Image 1"></a>
 						</div>
-						<div class="oc-item">
-							<a href="cars.php"><img class="blogo" src="images/blogo/2.png" alt="Image 1"></a>
-						</div>
-						<div class="oc-item">
-							<a href="cars.php"><img class="blogo" src="images/blogo/4.png" alt="Image 1"></a>
-						</div>
-						<div class="oc-item">
-							<a href="cars.php"><img class="blogo" src="images/blogo/3.png" alt="Image 1"></a>
-						</div>
-						<div class="oc-item">
-							<a href="cars.php"><img class="blogo" src="images/blogo/5.png" alt="Image 1"></a>
-						</div>
-						<div class="oc-item">
-							<a href="cars.php"><img class="blogo" src="images/blogo/6.png" alt="Image 1"></a>
-						</div>
+
+					<?php } ?>
+
 
 
 					</div>
@@ -308,66 +301,69 @@
 
 				<!-- Moving car on scroll
 				============================================= -->
-				<div class="section clearfix" style="padding: 100px 0; background: #fafafa">
+				<div class="section clearfix" style="padding: 10px 0; background: #fafafa">
+					<div class="row">
+							<div class="col-lg-6">
+
 					<div class="running-car topmargin-lg">
 						<img class="car" src="images/home/car.jpg" alt="">
 						<img class="wheel" src="images/home/car-tier.png" alt="">
 					</div>
+				</div>
+							<div class="col-lg-5">
+
 					<div class="container clearfix">
 						<div class="row clearfix" style="position: relative;">
-							<div class="col-lg-6 offset-lg-6">
-							<form action="cars.php" method="post" class="nobottommargin">
+							<div class="">
+							<form action="cars.php" method="GET">
 								<div class="row ">
-
-									
-									<div class="col-12 mt-3">
-										<label class="text h5" for="">Transmission:</label>
+									<div class="col-12 ">
+										<label class="h6" for="">Transmission:</label>
 										<br>
 										<div style="">
-										<input type="radio" checked="" name="trans"><label> Any </label>
-										<input type="radio" name="trans"><label> Automatic </label>
-										<input type="radio" name="trans"><label> Manual </label>
+										<input type="radio" <?php if(!empty($_GET['trans'])) if ($_GET['trans'] == '%') echo "checked"; ?> name="trans" value="%"><label> Any </label>
+										<input type="radio" <?php if(!empty($_GET['trans'])) if ($_GET['trans'] == 'auto') echo "checked"; ?> name="trans" value="auto"><label> Automatic </label>
+										<input type="radio" <?php if(!empty($_GET['trans'])) if ($_GET['trans'] == 'manual') echo "checked"; ?> name="trans" value="manual"><label> Manual </label>
 										</div>
-
+										<hr>
 
 									</div>
 
-									<div class="col-12 mt-3">
-										<label class="text h5" for="">Fuel:</label>
-										<br>
+									<div class="col-12 ">
+										<label class=" h6" for="">Fuel:</label>
 										<div style="">
-										<input type="radio" checked="" name="fuel"><label> Any </label>
-										<input type="radio" name="fuel"><label> Petrol </label>
-										<input type="radio" name="fuel"><label> Gas </label>
-										<input type="radio" name="fuel"><label> Diesel </label>
-										<input type="radio" name="fuel"><label> Hybird </label>
-										</div>
+										<input type="radio" <?php if(!empty($_GET['fuel'])) if ($_GET['fuel'] == '%') echo "checked"; ?> name="fuel" value="%"><label> Any </label>
+										<input type="radio"  <?php if(!empty($_GET['fuel'])) if ($_GET['fuel'] == 'petrol') echo "checked"; ?> name="fuel" value="petrol"><label> Petrol </label>
 
+										<input type="radio" <?php if(!empty($_GET['fuel'])) if ($_GET['fuel'] == 'cng') echo "checked"; ?> name="fuel" value="cng"><label> CNG </label>
+										
+										<input type="radio"  <?php if(!empty($_GET['fuel'])) if ($_GET['fuel'] == 'diesel') echo "checked"; ?> value="diesel" name="fuel"><label> Diesel </label>
+										</div>
+										<hr>
 									</div>
 									
 
-									<div class="col-12 mt-3">
-										<label class="text h5" for="">Price:</label>
-										<br>
+									<div class="col-12 ">
+										<label class=" h6" for="">Price:</label>
 										<div style="">
-										<input type="radio" checked="" name="price"><label> Low to High </label>
-										<input type="radio" checked="" name="price"><label> High to Low </label>
+										<input type="radio"  <?php if(!empty($_GET['sort'])) if ($_GET['sort'] == 'asc') echo "checked"; ?> value="asc" name="sort"><label> Low to High </label>
+										<input type="radio"   <?php if(!empty($_GET['sort'])) if ($_GET['sort'] == 'desc') echo "checked"; ?> value="desc" name="sort"><label> High to Low </label>
 
 
 										</div>
-
+										<hr>
 									</div>
 									
 
 
 
-									<div class="col-12 mt-4">
-										<button class="button button-3d button-rounded bgcolor text-white button-light button-large btn-block m-0">Search</button>
+									<div class="col-12 ">
+										<button type="submit" name="search" value="1" class="button button-3d button-rounded button-white button-light button-large btn-block m-0">Search</button>
 									</div>
 								</div>
 							</form>
-
 									<br>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -385,19 +381,11 @@
 						<div class="row">
 							<div class="col-md-6">
 
-						<div class="heading-block">
-							<h3 style="color: white">Reliable Rent a Car.</h3>
-							<span class="text-white">Benchmarking your car's performance helps you make great choices for your business.</span>
-						</div>
-
-
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti vero, animi suscipit id facere officia. Aspernatur, quo, quos nisi dolorum aperiam fugiat deserunt velit rerum laudantium cum magnam excepturi quod, fuga architecto provident, cupiditate delectus voluptate eaque! Sit neque ut eum, voluptatibus odit cum dolorum ipsa voluptates inventore cumque a.</p>
-
-						<a href="#">Learn more →</a>
+					<?php echo $bpost ?>
 
 					</div>
 							<div class="col-md-6">
-								<img src="images/slider/2.jpg">
+								<img src="images/home/<?php echo $bimg ?>">
 							</div>
 					</div>
 				</div>
@@ -419,48 +407,37 @@
 						</div>
 
 						<ul class="testimonials-grid grid-3 clearfix nobottommargin">
+
+							      <?php
+
+      $rows =mysqli_query($con,"SELECT * FROM testim ORDER BY ordr" ) or die(mysqli_error($con));
+      $n=0;
+
+      while($row=mysqli_fetch_array($rows)){
+
+        $tid = $row['id']; 
+        $tname = $row['name']; 
+        $timg = $row['img']; 
+        $tdesp = $row['desp']; 
+        ?>
 							<li>
 								<div class="testimonial">
 									<div class="testi-image">
-										<a href="#"><img src="images/cars/2.jpg" alt="Customer Testimonails"></a>
+										<a href="#"><img src="images/testim/<?php echo $timg ?>" alt="Customer Testimonails"></a>
 									</div>
-									<div class="testi-content">
-										<p>Incidunt deleniti blanditiis quas aperiam recusandae consequatur ullam quibusdam cum libero illo rerum repellendus!</p>
+									<div class="testi-content" style="color:#666">
+										<p>
+
+											<?php echo $tdesp ?>
+										</p>
 										<div class="testi-meta">
-											John Doe
-											<span>XYZ Inc.</span>
+											<?php echo $tname ?>
 										</div>
 									</div>
 								</div>
 							</li>
-							<li>
-								<div class="testimonial">
-									<div class="testi-image">
-										<a href="#"><img src="images/cars/7.jpg" alt="Customer Testimonails"></a>
-									</div>
-									<div class="testi-content">
-										<p>Natus voluptatum enim quod necessitatibus quis expedita harum provident eos obcaecati id culpa corporis molestias.</p>
-										<div class="testi-meta">
-											Collis Ta'eed
-											<span>Envato Inc.</span>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li>
-								<div class="testimonial">
-									<div class="testi-image">
-										<a href="#"><img src="images/cars/8.jpg" alt="Customer Testimonails"></a>
-									</div>
-									<div class="testi-content">
-										<p>Natus voluptatum enim quod necessitatibus quis expedita harum provident eos obcaecati id culpa corporis molestias.</p>
-										<div class="testi-meta">
-											Collis Ta'eed
-											<span>Envato Inc.</span>
-										</div>
-									</div>
-								</div>
-							</li>
+
+						<?php } ?>
 
 						</ul>
 

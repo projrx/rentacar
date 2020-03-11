@@ -385,6 +385,7 @@ h5, .h5 {
 
 h6, .h6 {
 	font-size: 1rem;
+	color: aliceblue;
 }
 
 .lead {
@@ -8179,7 +8180,7 @@ button.bg-dark:focus {
 
 .mt-3,
 .my-3 {
-	margin-top: 1rem !important;
+	/* margin-top: 1rem !important; */
 }
 
 .mr-3,

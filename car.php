@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if(isset($_SESSION['user'])){
+ $username= $_SESSION['user'];  // Initializing Session with value of PHP Variable
+ $userid= $_SESSION['userid'];  // Initializing Session with value of PHP Variable
+}
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -22,6 +29,40 @@
 			<?php 	include 'include/header.php'; ?>
 			<div class="container">
 
+
+
+<?php if(!empty($_GET['id'])){ ?>
+  <?php $id=$_GET['id']; 
+      $rows =mysqli_query($con,"SELECT * FROM car where id=$id " ) or die(mysqli_error($con));
+      while($row=mysqli_fetch_array($rows)){
+
+ $id = $row['id']; 
+        $name = $row['name']; 
+        $brand = $row['brand']; 
+        $model = $row['model']; 
+        $img0 = $row['img0']; 
+        $img1 = $row['img1']; 
+        $img2 = $row['img2']; 
+        $img3 = $row['img3']; 
+        $img4 = $row['img4']; 
+        $engine = $row['engine']; 
+        $enginec = $row['enginec']; 
+        $fuel = $row['fuel']; 
+        $millage = $row['millage']; 
+        $trans = $row['trans']; 
+        $gears = $row['gears']; 
+        $dist = $row['dist']; 
+        $color = $row['color']; 
+        $price = $row['price']; 
+        $insr = $row['insr']; 
+        $due = $row['due']; 
+        $docd = $row['docd']; 
+        $book = $row['book']; 
+        $dates = $row['dates']; 
+        $datec = $row['datec']; 
+
+      ?>
+
 				<div class="text">
 					<br><Br>
 
@@ -36,15 +77,45 @@
 											<div class="flexslider">
 												<div class="slider-wrap" data-lightbox="gallery">
 
-													<div class="slide" data-thumb="images/cars/3.jpg"><a href="images/cars/3.jpg" title="Car - Front View" data-lightbox="gallery-item"><img src="images/cars/3.jpg" alt="Pink Printed Dress"></a></div>
+<?php if(!empty($img0)){ ?>
 
-													<div class="slide" data-thumb="images/cars/1.jpg"><a href="images/cars/1.jpg" title="Car - Side View" data-lightbox="gallery-item"><img src="images/cars/1.jpg" alt="Pink Printed Dress"></a></div>
+<div class="slide" data-thumb="images/cars/<?php echo $img0 ?>"><a href="images/cars/<?php echo $img0 ?>" title="<?php echo $name ?>" data-lightbox="gallery-item"><img style="max-height:300px;height: 300px" src="images/cars/<?php echo $img0 ?>"></a></div>
+<?php } ?>
 
-													<div class="slide" data-thumb="images/cars/2.jpg"><a href="images/cars/2.jpg" title="cars - Back View" data-lightbox="gallery-item"><img src="images/cars/2.jpg" alt="Pink Printed Dress"></a></div>
+<?php if(!empty($img1)){ ?>
+
+<div class="slide" data-thumb="images/cars/<?php echo $img1 ?>"><a href="images/cars/<?php echo $img1 ?>" title="<?php echo $name ?>" data-lightbox="gallery-item"><img style="max-height:300px;height: 300px" src="images/cars/<?php echo $img1 ?>"></a></div>
+<?php } ?>
+
+<?php if(!empty($img2)){ ?>
+
+<div class="slide" data-thumb="images/cars/<?php echo $img2 ?>"><a href="images/cars/<?php echo $img2 ?>" title="<?php echo $name ?>" data-lightbox="gallery-item"><img style="max-height:300px;height: 300px" src="images/cars/<?php echo $img2 ?>"></a></div>
+<?php } ?>
+
+<?php if(!empty($img3)){ ?>
+
+<div class="slide" data-thumb="images/cars/<?php echo $img3 ?>"><a href="images/cars/<?php echo $img3 ?>" title="<?php echo $name ?>" data-lightbox="gallery-item"><img style="max-height:300px;height: 300px" src="images/cars/<?php echo $img3 ?>"></a></div>
+<?php } ?>
+
+<?php if(!empty($img4)){ ?>
+
+<div class="slide" data-thumb="images/cars/<?php echo $img4 ?>"><a href="images/cars/<?php echo $img3 ?>" title="<?php echo $name ?>" data-lightbox="gallery-item"><img style="max-height:300px;height: 300px" src="images/cars/<?php echo $img4 ?>"></a></div>
+<?php } ?>
+
+
+
+
+
+
 												</div>
 											</div>
 										</div>
-										<div class="sale-flash">Best in Class!</div>
+										<div class="sale-flash">
+											<?php   $rowsx =mysqli_query($con,"SELECT img FROM brands WHERE id=$brand LIMIT 1" ) or die(mysqli_error($con));
+       while($rowx=mysqli_fetch_array($rowsx)){
+        $bimg = $rowx['img']; } ?>
+											<img src="images/brands/<?php echo $bimg ?>" style="height: 50px;width: 60px;">
+											</div>
 									</div><!-- Product Single - Gallery End -->
 
 								</div>
@@ -53,47 +124,54 @@
 
 								<!-- Product Single - Price
 									============================================= -->
-									<div class="h4">Audi 2016 S2 Cabriolet</div>
+									<div class="h4">
+										<?php   $rowsx =mysqli_query($con,"SELECT name FROM brands WHERE id=$brand LIMIT 1" ) or die(mysqli_error($con));
+       while($rowx=mysqli_fetch_array($rowsx)){
+        echo $rowx['name']; } ?>
+
+										<?php echo $name ?>
+											
+										</div>
 									
 
-									<div class="product-price"><ins>Rs. 25,000 /- Per Month</ins></div>
+									<div class="product-price"><ins>Rs. <?php echo number_format($price) ?> /- Per Day</ins></div>
 
 							
 									<hr>
-									<div class="clear"></div>
+									<div class="row no-gutters car-p-features font-primary clearfix">
+									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-cogs"></i><span> <?php echo $engine ?> CC</span></div>
 
-									<div class="row no-gutters car-p-features font-primary clearfix" style="font-size:18px;">
+									<div style="text-transform: capitalize;" class="col-lg-4 col-6 nopadding"><i class="icon-car-pump"></i><span> <?php echo $fuel ?></span></div>
 
-									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-cogs"></i><span> 25000 CC</span></div>
+									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-fuel2"></i><span> <?php echo $millage ?>kmpl</span></div>
 
-									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-pump"></i><span> Hybrid</span></div>
+									<div style="text-transform: capitalize;" class="col-lg-4 col-6 nopadding"><i class="icon-car-signal2"></i><span> <?php echo $trans ?></span></div>
 
-									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-fuel2"></i><span> 20kmpl</span></div>
+									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-meter"></i><span> <?php echo number_format($dist) ?> KM</span></div>
 
-									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-signal2"></i><span> Automatic</span></div>
+									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-care"></i><span> <?php echo $model ?></span></div>
 
-									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-meter"></i><span> 1,500 KM</span></div>
 
-									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-care"></i><span> 2018</span></div>
 								</div>
 
 								<hr>
 
+								<?php if($book==0) { ?>
 
 								<!-- Product Single - Quantity & Cart Button
 									============================================= -->
-									<form class="cart nobottommargin clearfix" method="post" enctype='multipart/form-data'>
+									<form action="" method="post">
 										<div class="row">
 										<div class="col-6">
 										<h5>Book This Car For:</h5>
 										<div class="quantity clearfix">
 											<input onclick="wrtm()" type="button" value="-" class="minus">
-											<input onchange="wrt()"  type="number"  id="months" name="months" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="4" />
+											<input onchange="wrt()"  type="number"  id="months" name="qty" step="1" min="1"  name="quantity" value="1" title="Qty" class="qty" size="4" />
 
 											<input onclick="wrtp()"  type="button" value="+" class="plus">
-											 &nbsp;<span style="font-size: 22px;    vertical-align: text-top;"> Months </span>
+											 &nbsp;<span style="font-size: 22px;    vertical-align: text-top;"> Days </span>
 
-                              <input onkeyup="wrt()" type="number" class="form-control" id="price"  name="newlec" required="" style="display: none;" value="25000">
+                              <input onkeyup="wrt()" type="number" class="form-control" id="price"  name="newlec" required="" style="display: none;" value="<?php echo $price ?>">
 
 
 										</div>
@@ -101,7 +179,7 @@
 										<div class="col-6">
 										<h5>Total:</h5>
 										<span style="font-size: 25px">
-                              Rs. <input id="total" type="text" style="    border: none; max-width: 100px;" name="newtotal" value="25000" required=""> 
+                              Rs. <input id="total" type="text" style="    border: none; max-width: 100px;" name="newtotal" value="<?php echo $price ?>" required="">/-
                           </span>
 
 										</div>
@@ -111,9 +189,15 @@
 										<br>
 
 										<br>
-										<button type="submit" class="add-to-cart button nomargin">Book Now</button>
+										<button type="submit"  name="book" value="<?php echo $id ?>" class="add-to-cart button nomargin">Book Now</button>
 									</form><!-- Product Single - Quantity & Cart Button End -->
 
+								<?php }else { ?>
+									<h4>This Car is Already Booked</h4>
+								<?php } ?>
+
+								<?php if(!empty($msg)) echo $msg; ?>
+								
 									<div class="clear"></div>
 									<div class="line"></div>
 
@@ -122,6 +206,8 @@
 
 								</div>
 							</div>
+
+					<?php } }  ?>
 
 				</div>
 			</div>

@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if(isset($_SESSION['user'])){
+ $username= $_SESSION['user'];  // Initializing Session with value of PHP Variable
+ $userid= $_SESSION['userid'];  // Initializing Session with value of PHP Variable
+}
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -119,7 +126,7 @@
 								<div class="fbox-icon">
 									<a href="#"><i class="icon-map-marker2"></i></a>
 								</div>
-								<h3>Address<span class="subtitle">Our Street Address, Lahore</span></h3>
+								<h3>Address<span class="subtitle"><?php echo 	$siteaddress ?></span></h3>
 							</div>
 						</div>
 
@@ -128,7 +135,7 @@
 								<div class="fbox-icon">
 									<a href="#"><i class="icon-phone3"></i></a>
 								</div>
-								<h3>Call Us<span class="subtitle">(+92) 300 237890</span></h3>
+								<h3>Call Us<span class="subtitle"><?php echo 	$sitephone ?></span></h3>
 							</div>
 						</div>
 
@@ -137,7 +144,7 @@
 								<div class="fbox-icon">
 									<a href="#"><i class="icon-email"></i></a>
 								</div>
-								<h3>Email<span class="subtitle">info@rentacars.com</span></h3>
+								<h3>Email<span class="subtitle"><?php echo 	$sitemail ?></span></h3>
 							</div>
 						</div>
 
@@ -146,7 +153,7 @@
 								<div class="fbox-icon">
 									<a href="#"><i class="icon-facebook"></i></a>
 								</div>
-								<h3>Visit Facebook<span class="subtitle">RentACars</span></h3>
+								<h3>Visit Facebook<span class="subtitle"><a href="<?php echo $facebook ?>"><?php echo 	$sitename ?></a></span></h3>
 							</div>
 						</div>
 

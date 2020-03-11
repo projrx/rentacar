@@ -1,3 +1,12 @@
+<?php 
+session_start();
+if(isset($_SESSION['user'])){
+  header("location:profile.php");
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -10,6 +19,55 @@
 	<?php $link="blank" ?>
 
 </head>
+
+
+
+  <?php
+  if(isset($_POST['submit'])){
+
+    $msg="Unsuccessful" ;
+
+
+    $name=$_POST['name'];
+    $email=$_POST['email'];
+    $username=$_POST['username'];
+    $phone=$_POST['phone'];
+    $password=$_POST['password'];
+
+    $query = mysqli_query($con,"SELECT * from users where username='$username'")or die(mysqli_error($con));
+    $un = mysqli_num_rows($query);
+    $query = mysqli_query($con,"SELECT * from users where email='$email'")or die(mysqli_error($con));
+    $em = mysqli_num_rows($query);
+    if ($un > 0) {
+      $error = 'Username is Registered.';
+    }else if ($em > 0) {
+      $error = 'Email is Already Registered.';
+    }else{
+
+
+      $img='avatar.png';
+
+      $data=mysqli_query($con,"INSERT INTO users (name,email,username,password,phone,img)VALUES ('$name','$email','$username','$password','$phone','$img')")or die( mysqli_error($con) );
+
+
+$_SESSION['user']=$username; // Initializing Session
+
+
+header("location:editprofile.php"); // Redirecting To Other Page
+
+
+}
+
+
+
+
+
+}
+
+
+
+?>
+
 
 <body class="stretched">
 
@@ -56,25 +114,80 @@
 							<div class="tab-content clearfix" id="tab-login">
 								<div class="card nobottommargin">
 									<div class="card-body" style="padding: 40px;">
-										<form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
+										<form action="" method="post">
 
-											<h3>Login to your Account</h3>
+											
+											<h1>
+          <a href="./">Login</a>
+        </h1>
+        <form action="" method="post">
+          <div class="form-group">
+            <input class="form-control" name="username" placeholder="Email / Username" type="text">
+          </div>
+          <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+          </div>
+          <div class="form-group">
 
-											<div class="col_full">
-												<label for="login-form-username">Username:</label>
-												<input type="text" id="login-form-username" name="login-form-username" value="" class="form-control" />
-											</div>
+            <input type="submit" name="login" class="btn btn-info" value="Submit >">
+          </div>
+          
+        </form>
 
-											<div class="col_full">
-												<label for="login-form-password">Password:</label>
-												<input type="password" id="login-form-password" name="login-form-password" value="" class="form-control" />
-											</div>
 
-											<div class="col_full nobottommargin">
-												<button class="button button-3d button-black nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
-												<a href="#" class="fright">Forgot Password?</a>
-											</div>
+        <?php
+                       
+           if (isset($_POST['login'])) {
+                       if (empty($_POST['username']) || empty($_POST['password'])) {
+                       echo "Username or Password is empty";
+                       }
+                       else
+                       {
+                       $username=$_POST['username'];
+                       $password=$_POST['password'];
+                       $username3 = stripslashes($username);
+                       $username2 = str_replace("<", "", $username3);
+                       $username1 = str_replace(">", "", $username2);
+                       $username = str_replace("'", "", $username1);
+                       $password3 = stripslashes($password);
+                       $password2 = str_replace("<", "", $password3);
+                       $password1 = str_replace(">", "", $password2);
+                       $password = str_replace("'", "", $password1);
 
+
+
+                       $query = mysqli_query($con,"SELECT * from users where password='$password' AND (username='$username' OR email='$username') ")or die(mysqli_error($con));
+                       $rows = mysqli_num_rows($query);
+                       if ($rows == 1) {
+
+
+
+      $rowsx =mysqli_query($con,"SELECT * from users where password='$password' AND (username='$username' OR email='$username') LIMIT 1 " ) or die(mysqli_error($con));
+      while($rowx=mysqli_fetch_array($rowsx)){
+        $userid = $rowx['id'];
+        $username = $rowx['username'];
+    }
+
+
+
+                       $_SESSION['user']=$username; // Initializing Session
+                       $_SESSION['userid']=$userid; // Initializing Session
+                      
+                  
+                       header("location:profile.php"); // Redirecting To Other Page
+                       } else {
+                        echo "Username or Password is Invalid";
+
+                       }
+                       }
+                       }
+
+                       ?>
+
+
+
+        <div class="text-center"><a href="signup.php">Signup </a></div>
+        
 										</form>
 									</div>
 								</div>
@@ -85,43 +198,53 @@
 									<div class="card-body" style="padding: 40px;">
 										<h3>Register for an Account</h3>
 
-										<form id="register-form" name="register-form" class="nobottommargin" action="#" method="post">
+          <form id="register-form" name="register-form" action="" method="post">
 
-											<div class="col_full">
-												<label for="register-form-name">Name:</label>
-												<input type="text" id="register-form-name" name="register-form-name" value="" class="form-control" />
-											</div>
+            <div class="col_full">
+              <label>Name:</label>
+              <input type="text" name="name" value="" class="form-control" required />
+            </div>
 
-											<div class="col_full">
-												<label for="register-form-email">Email Address:</label>
-												<input type="text" id="register-form-email" name="register-form-email" value="" class="form-control" />
-											</div>
+            <div class="col_full">
+              <label>Email Address:</label>
+              <input type="text" name="email" value="" class="form-control" required />
+            </div>
 
-											<div class="col_full">
-												<label for="register-form-username">Choose a Username:</label>
-												<input type="text" id="register-form-username" name="register-form-username" value="" class="form-control" />
-											</div>
+            <div class="col_full">
+              <label>Choose a Username:</label>
+              <input type="text" name="username" value="" class="form-control" required/>
 
-											<div class="col_full">
-												<label for="register-form-phone">Phone:</label>
-												<input type="text" id="register-form-phone" name="register-form-phone" value="" class="form-control" />
-											</div>
+            </div>
 
-											<div class="col_full">
-												<label for="register-form-password">Choose Password:</label>
-												<input type="password" id="register-form-password" name="register-form-password" value="" class="form-control" />
-											</div>
+            <div class="col_full">
+              <label>Phone:</label>
+              <input type="number" name="phone" value="" class="form-control" required />
+            </div>
 
-											<div class="col_full">
-												<label for="register-form-repassword">Re-enter Password:</label>
-												<input type="password" id="register-form-repassword" name="register-form-repassword" value="" class="form-control" />
-											</div>
+            <div class="col_full">
+              <label>Choose Password:</label>
+              <input type="password" id="pass" name="password" value="" class="form-control" required />
+            </div>
 
-											<div class="col_full nobottommargin">
-												<button class="button button-3d button-black nomargin" id="register-form-submit" name="register-form-submit" value="register">Register Now</button>
-											</div>
+            <div class="col_full">
+              <label>Re-enter Password:</label>
+              <input onkeyup="check();" type="password" id="repass" name="repassword" value="" class="form-control" required />
+            </div>
 
-										</form>
+
+
+            <div class="col_full text-center">
+              <br><br>
+              <p class="lead"> <?php if(!empty($error)) echo $error ?> </p>
+            </div>
+
+
+            <div class="col_full text-center">
+              <br><br>
+              <button disabled="" id="submit" class="btn btn-info text-center" name="submit" value="register">Register Now</button>
+            </div>
+
+          </form>
 									</div>
 								</div>
 							</div>
@@ -136,7 +259,23 @@
 
 		</section><!-- #content end -->
 
+<script type="text/javascript">
+	
+  function check() {
 
+    pass = document.getElementById('pass').value;
+    repass = document.getElementById('repass').value;
+
+    if (pass!=repass) { 
+      document.getElementById('submit').disabled=true;
+    }else{
+      document.getElementById('submit').disabled=false;
+    }
+
+  }
+
+
+</script>
 
 
 

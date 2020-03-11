@@ -1,15 +1,14 @@
 /*-----------------------------------------------------------------------------------
-
 	Theme Name: Canvas
 	Theme URI: http://themes.semicolonweb.com/html/canvas
 	Description: The Multi-Purpose Template
 	Author: SemiColonWeb
 	Author URI: http://themeforest.net/user/semicolonweb
 	Version: 5.9.1
-
 -----------------------------------------------------------------------------------*/
 /* ----------------------------------------------------------------
-
+    
+    
 	- Basic
 	- Typography
 	- Basic Layout Styles
@@ -164,11 +163,12 @@ body {
 	line-height: 1.5;
 	color: #555;
 	font-family: 'Lato', sans-serif;
+	background: #fff !important;
 }
 
 a {
 	text-decoration: none !important;
-	color: #98463d;
+	color: #98463d !important;
 }
 
 a:hover { color: #222; }
@@ -12095,7 +12095,7 @@ button.toast-close-button {
 .footer-widgets-wrap .col_five_sixth { margin-bottom: 0; }
 
 #copyrights {
-	padding: 40px 0;
+	padding: 16px 0;
 	background-color: #DDD;
 	font-size: 14px;
 	line-height: 1.8;
@@ -12113,7 +12113,7 @@ button.toast-close-button {
 .copyright-links a {
 	display: inline-block;
 	margin: 0 3px;
-	color: #333;
+	color: #333 !important;
 	border-bottom: 1px dotted #444;
 }
 

@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if(isset($_SESSION['user'])){
+ $username= $_SESSION['user'];  // Initializing Session with value of PHP Variable
+ $userid= $_SESSION['userid'];  // Initializing Session with value of PHP Variable
+}
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -45,7 +52,7 @@
 
 				<div class="col-md-7">
 
-
+<!--
 					<div class="" style="">
 						<div class="clear"></div>
 						<br>
@@ -53,11 +60,11 @@
 						<div class="float-right"> <a href="">View All >> </a></div>
 
 
-						<!-- Portfolio Items
-							============================================= -->
+						 Portfolio Items
+
 							<div id="portfolio" class="portfolio portfolio-3 grid-container clearfix">
 
-								<!-- Car 1 -->
+
 								<article class="portfolio-item cf-sedan" style="padding-bottom: 40px">
 									<div class="portfolio-image">
 										<a href="car.php">
@@ -75,7 +82,7 @@
 
 								</article>
 
-								<!-- Car 2 -->
+
 								<article class="portfolio-item cf-suv" style="padding-bottom: 40px">
 									<div class="portfolio-image">
 										<a href="car.php">
@@ -91,7 +98,7 @@
 
 								</article>
 
-								<!-- Car 3 -->
+
 								<article class="portfolio-item cf-cabriolet" style="padding-bottom: 40px">
 									<div class="portfolio-image">
 										<a href="car.php">
@@ -109,52 +116,89 @@
 
 
 
-							</div> <!-- Filter Car lists end -->
+							</div>  Filter Car lists end -->
 
 							<br>
 
-							<label class="lead color"> Upcoming Payment Invoices:</label>
-						<div class="float-right"> <a href="">View All >> </a></div>
+							<label class="lead color"> Recent Orders:</label>
+						<div class="float-right"> <a href="orders.php">View All >> </a></div>
 
 							<table class="table table-bordered table-striped">
 						  <thead>
 							<tr>
-							  <th>Invoice#</th>
+
 							  <th>Order#</th>
-							  <th>Img</th>
 							  <th>Car</th>
-							  <th>Due Date</th>
+							  <th>Img</th>
+							  <th>Total</th>
+							  <th>Paid</th>
+							  <th>Status</th>
+							  <th>Date</th>
 							</tr>
 						  </thead>
 						  <tbody>
+
+						  	<?php 
+
+		  	$rows =mysqli_query($con,"SELECT * FROM orders where status!='cart' AND userid='$userid' LIMIT 10" ) or die(mysqli_error($con));
+		  	$n=0;
+		  	$stotal=0;
+
+		  	while($row=mysqli_fetch_array($rows)){
+
+		  	  $oid = $row['id']; 
+		  	  $pid = $row['carid']; 
+		  	  $qty = $row['days']; 
+		  	  $status = $row['status']; 
+
+		  	    $paid = $row['paid'];  
+		  	    $datec = $row['datebook']; 
+
+
+		  	  $rowsx =mysqli_query($con,"SELECT * FROM car where id='$pid' " ) or die(mysqli_error($con));
+		  	  while($rowx=mysqli_fetch_array($rowsx)){
+
+		  	  	 $stotal=0;
+		  	    $price = $rowx['price'];  
+		  	    $brand = $rowx['brand'];  
+		  	    $proname = $rowx['name']; 
+		  	    $img = $rowx['img0']; 
+		  	    $total = $qty*$price;
+		  	    $stotal = $stotal+$total;
+		  	  
+
+		  	  ?>
 							<tr>
 							  <td>
-								<code>9842</code>
+								<a  href="orders.php?id=<?php echo $oid ?>"><h5 style="text-decoration: underline;"><?php echo $oid ?></h5></a>
 							  </td>
+
+							  <td><a href="car.php?id=<?php echo $pid ?>">
+							  	<?php   
+		$rowsxx =mysqli_query($con,"SELECT name FROM brands WHERE `id`='$brand' " ) or die(mysqli_error($con));
+       while($rowxx=mysqli_fetch_array($rowsxx)){
+        echo $rowxx['name']; } ?>
+        <?php echo $proname ?>
+        	
+        </a></td>
 							  <td>
-							  	<label>OS-7665</label>
-							  </td>
-							  <td><img src="images/cars/2.jpg" class="oimg"></td>
-							  <td><a href="car.php">Honda RV Cabriolet</a></td>
-							  <td> 01-05-2019 </td>
+
+		      <img style="height: 50px;width: 80px;" src="images/cars/<?php echo $img ?>">
+
+		  </td>
+							  <td>Rs. <?php echo number_format($stotal) ?>/- </td>
+							  <td>Rs. <?php echo number_format($paid) ?>/- </td>
+							  <td style="text-transform: capitalize;"> <?php echo $status ?> </td>
+							  <td> <?php echo $datec ?> </td>
 							</tr>
 
-							<tr>
-							  <td>
-								<code>9842</code>
-							  </td>
-							  <td>
-							  	<label>RD-34554</label>
-							  </td>
-							  <td><img src="images/cars/5.jpg" class="oimg"></td>
-							  <td><a href="car.php">Audi S5</a></td>
-							  <td> 05-11-2020 </td>
-							</tr>
 
-
+						<?php }}  ?>
 
 						  </tbody>
 						</table>
+
+						<h3>Account Balance: Rs. <?php include 'include/bal.php'; ?>/- </h3>
 
 
 						</div>

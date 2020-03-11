@@ -1,3 +1,13 @@
+<?php 
+session_start();
+if(!isset($_SESSION['user'])){
+	header("location:login.php");
+}
+// Store Session Data
+ $username= $_SESSION['user'];  // Initializing Session with value of PHP Variable
+ $userid= $_SESSION['userid'];  // Initializing Session with value of PHP Variable
+ ?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -50,53 +60,108 @@
 				<div class="col-md-7">
 
 
-				
+   
+      <?php
+
+      $rows =mysqli_query($con,"SELECT * FROM users where id='$userid' " ) or die(mysqli_error($con));
+      $n=0;
+
+      while($row=mysqli_fetch_array($rows)){
+
+        $id = $row['id']; 
+        $name = $row['name']; 
+        $username = $row['username']; 
+        $email = $row['email']; 
+        $phone = $row['phone']; 
+        $address = $row['address']; 
+        $city = $row['city']; 
+        $img = $row['img']; 
+        $drl = $row['drl']; 
+        $drlex = $row['drlex']; 
+        $datec = $row['datec']; 
+        
+        ?>
 
 
-						<div class="col-12">
+            <div class="col-12">
 
-							<div class="row">
-							<div class="col-9">
+              <div class="row">
+              <div class="col-3">
 
-							<img src="images/icons/avatar.jpg" class="alignleft img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 84px;">
-
-							<div class="heading-block noborder">
-								<h3>FirstName Last</h3>
-								<span>@Username</span>
-							</div>
-							</div>
-							<div class="col-3 lead">
-								<i class="icon-pencil"></i> <a href="editprofile.php"> Edit Profile </a>
-							</div>
-							</div>
-
-							<div class="clear"></div>
-						
-
-							<table class="table">
-								<tr>
-									<td> <h4> Email: </h4> </td><td> <h4 class="lead">rentacar@gmail.com</h4></td>
-								</tr>
-								<tr>
-									<td> <h4> Phone: </h4> </td><td> <h4 class="lead">+92 300 1232345</h4></td>
-								</tr>
-
-								<tr> 
-									<td><h4> Date of Birth: </h4></td><td><h4 class="lead">11-09-1996</h4></td>
-								</tr>
-
-								<tr>
-									<td><h4> Driving Lisence: </h4></td><td><img src="images/dl.jpg"></td>
-								</tr>
-							</table>
+              <img src="images/users/<?php echo $img ?>" class="alignleft img-thumbnail notopmargin nobottommargin" alt="Avatar" style="max-width: 180px;">
 
 
+             </div>
+              <div class="col-6">
+              	<br>
+
+              <div class="heading-block noborder">
+                <h3><?php echo $name ?></h3>
+                <span>@<?php echo $username ?></span>
+
+              </div>
+
+              	<br>
+              	<br>
+
+              </div>
+              <div class="col-3 ">
+                <i class="icon-pencil"></i> <a href="editprofile.php"> Edit Profile </a>
+                -
+                <i class="icon-logout"></i> <a href="logout.php"> Logout </a>
+              </div>
+              </div>
+
+              <div class="clear"></div>
+            
+
+              <table class="table">
+                <tbody>
+
+                	<tr>
+                  <td> 
+
+            <h4> Account Balance: </h4> </td><td> <h4 class="lead">Rs. <?php include 'include/bal.php'; ?>/-</h4></td>
+                </tr>
+                  <tr>
+                  <td> <h4> Email: </h4> </td><td> <h4 class="lead"><?php echo $email ?></h4></td>
+                </tr>
+                <tr>
+                  <td> <h4> Phone: </h4> </td><td> <h4 class="lead"><?php echo $phone ?></h4></td>
+                </tr>
+
+                <tr>
+                  <td> <h4> Address: </h4> </td><td> <h4 class="lead"><?php echo $address ?></h4></td>
+                </tr>
+
+                <tr>
+                </tr>
+
+                <tr>
+                  <td> <h4> City: </h4> </td><td> <h4 class="lead"><?php echo $city ?></h4></td>
+                </tr>
+
+                <tr>
+                  <td> <h4> Driving Lisence: </h4> </td><td> <h4 class="lead"><img src="images/users/<?php echo $drl ?>" style="height: 200px;" > </h4></td>
+                </tr>
+
+                <tr>
+                  <td> <h4> Lisence Expiry: </h4> </td><td> <h4 class="lead"><?php echo $drlex ?></h4></td>
+                </tr>
+
+                <tr> 
+                  <td><h4> Joining: </h4></td><td><h4 class="lead"><?php echo $datec ?></h4></td>
+                </tr>
 
 
-						</div>
+              </tbody></table>
 
 
 
+
+            </div>
+
+          <?php } ?>
 
 
 
