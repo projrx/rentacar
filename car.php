@@ -189,7 +189,28 @@ if(isset($_SESSION['user'])){
 										<br>
 
 										<br>
+										<?php 
+											if(!empty($userid)) { 
+
+      $rows =mysqli_query($con,"SELECT * FROM users where id='$userid' " ) or die(mysqli_error($con));
+      while($row=mysqli_fetch_array($rows)){ 
+        $drlex = $row['drlex']; 
+    }
+
+                $date= date("Y-m-d");
+
+            $tdate=strtotime($date);
+            $tdrlex=strtotime($drlex);
+            $newdate = $tdrlex-$tdate;
+            $newdate =  $newdate / (60*60*24) ;
+            if($tdrlex<$tdate){
+            	echo "Please Update Your Driving Lisence.";
+            }else{ ?>
 										<button type="submit"  name="book" value="<?php echo $id ?>" class="add-to-cart button nomargin">Book Now</button>
+
+								<?php } } else { ?>
+										<button type="submit"  name="book" value="<?php echo $id ?>" class="add-to-cart button nomargin">Book Now</button>
+									<?php } ?>
 									</form><!-- Product Single - Quantity & Cart Button End -->
 
 								<?php }else { ?>

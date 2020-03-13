@@ -111,7 +111,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
                 <div class="card-header border-0">
                   <div class="card-title text-center">
                     <div class="p-1">
-                      <h2>Tooter</h2>
+                      <h2>Rent A Car</h2>
                     </div>
                   </div>
                   <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">

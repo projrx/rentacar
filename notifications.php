@@ -1,3 +1,13 @@
+<?php 
+session_start();
+if(!isset($_SESSION['user'])){
+	header("location:login.php");
+}
+// Store Session Data
+ $username= $_SESSION['user'];  // Initializing Session with value of PHP Variable
+ $userid= $_SESSION['userid'];  // Initializing Session with value of PHP Variable
+ ?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
@@ -59,19 +69,33 @@
 						<div class="noti">
 
 					<ul class="list-group">
-						<li class="list-group-item">
-							<lable> Fill the Profile at: </lable>  <a href="profile.php" >Profile Page</a>
+					<?php 
 
-							<span class="badge float-right" style="margin-top: 3px;">x</span>
+      $rows =mysqli_query($con,"SELECT * FROM users where id='$userid' " ) or die(mysqli_error($con));
+      while($row=mysqli_fetch_array($rows)){ 
+        $drlex = $row['drlex']; 
+    }
+
+                $date= date("Y-m-d");
+
+            $tdate=strtotime($date);
+            $tdrlex=strtotime($drlex);
+            $newdate = $tdrlex-$tdate;
+            $newdate =  $newdate / (60*60*24) ;
+            if($tdrlex<$tdate){ ?>
+						<li class="list-group-item">
+							<lable> 
+		
+            	Please Update Your Driving Lisence.
+            </lable>  <a href="profile.php" >Profile Page</a>
+
+							<span class="badge float-right" style="margin-top: 3px;">1</span>
 
 						</li>
 
-						<li class="list-group-item">
-							<lable> More Car to Rent will be avaliale this Saturday Afternoon</lable>
+            <?php }
+             ?> 
 
-							<span class="badge float-right" style="margin-top: 3px;">x</span>
-
-						</li>
 						
 					</ul>
 				</div>

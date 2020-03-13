@@ -185,9 +185,6 @@ header("location:editprofile.php"); // Redirecting To Other Page
                        ?>
 
 
-
-        <div class="text-center"><a href="signup.php">Signup </a></div>
-        
 										</form>
 									</div>
 								</div>
