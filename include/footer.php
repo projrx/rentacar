@@ -1,4 +1,4 @@
-	<footer id="footer" class="light" style="background: #99473d">
+	<footer id="footer" class="light" style="background: #800e00">
 
 
 
@@ -168,7 +168,7 @@
 
 			<!-- Copyrights
 			============================================= -->
-			<div id="copyrights" style="background: #99473d;color: #000">
+			<div id="copyrights" style="background: #800e00;color: #000">
 
 				<div class="container clearfix">
 

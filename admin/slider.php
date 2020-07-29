@@ -166,7 +166,9 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
 
           <tr>
             <td>
-              <input type="text" class="form-control" name="name<?php echo $n ?>" value="<?php echo $name ?>" required>
+              <textarea class="ckeditor" class="form-control" name="name<?php echo $n ?>">
+               <?php echo $name ?>
+             </textarea>
             </td>
 
 

@@ -8,6 +8,7 @@
 
 	<!-- Stylesheets
 	============================================= -->
+  <link rel="stylesheet" type="text/css" href="css/dcss.css">
 
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 	<link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -16,6 +17,7 @@
 	<link rel="stylesheet" href="css/animate.css" type="text/css" />
 	<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
 	<link rel="stylesheet" href="css/responsive.css" type="text/css" />
+
 
 
 	<!-- Page Level Stylesheets

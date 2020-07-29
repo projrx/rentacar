@@ -12,7 +12,7 @@
 
 .section {
 
-    background-color: #7a3931;
+    background-color: #800e00;
     color: #fff;
 }
 
@@ -36,17 +36,17 @@ a {
 }
 
 .color{
-	color:#98483d;
+	color:#800e00;
 	
 }
 
 .bgcolor{
-	background: #98483d
+	background: #800e00
 	color:#fff;
 }
 
 .badge{
-	background: #98483d;
+	background: #800e00;
     color: #fff;
     border-radius: 50px;
     padding: 4px 6px;

@@ -20,7 +20,7 @@ if(isset($_SESSION['user'])){
 
 	<style type="text/css">
 		.blogo{
-			max-width: 100px;
+			max-width: 80px;
 		}
 		[class^="icon-"]{
 
@@ -44,7 +44,7 @@ if(isset($_SESSION['user'])){
 
 		h6, .h6 {
     font-size: 1rem;
-    color: #7a3931;
+    color: #800e00;
     margin-top: 20px;
 }
 
@@ -62,7 +62,16 @@ if(isset($_SESSION['user'])){
 		<!-- Header
 		============================================= -->
 		<?php 	include 'include/header.php'; ?>
+<style type="text/css">
+	.slider-wrap, .flex-control-nav, .flex-direction-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: none;
+    display: none;
+}
 
+</style>
 
 		<!-- Content
 		============================================= -->
@@ -89,7 +98,7 @@ if(isset($_SESSION['user'])){
 							<div class="slide" data-thumb="images/slider/1.jpg">
 								<a href="#">
 									<img src="images/slider/<?php echo $img ?>" alt="Slide 2">
-									<div class="flex-caption slider-caption-bg slider-caption-top-right">
+									<div class="flex-caption  slider-caption-top-left" style="padding: 20px">
 										<?php echo $name ?>
 									</div>
 								</a>
@@ -104,6 +113,7 @@ if(isset($_SESSION['user'])){
 			</div>
 
 		</section>
+
 
 
 
@@ -122,16 +132,146 @@ if(isset($_SESSION['user'])){
     }
       ?>
 
+
+				<div class="section topmargin-lg">
+					<div class="container clearfix">
+
+						<div class="row">
+							<div class="col-md-6">
+
+					<?php echo $bpost ?>
+
+					</div>
+							<div class="col-md-6">
+								<img src="images/home/<?php echo $bimg ?>">
+							</div>
+					</div>
+				</div>
+			</div>
+
+
+
+	<div class="container">
+				<br>
+					<div class="fancy-title title-center title-dotted-border">
+						<h4>Search More Cars by Brands</h4>
+					</div>
+
+					<div id="oc-images" class="owl-carousel image-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="true" data-items-xs="2" data-items-sm="4" data-items-lg="5" data-items-xl="7">
+
+ <?php
+
+      $rows =mysqli_query($con,"SELECT * FROM brands ORDER BY ordr" ) or die(mysqli_error($con));
+      $n=0;
+
+      while($row=mysqli_fetch_array($rows)){
+
+        $id = $row['id']; 
+        $name = $row['name']; 
+        $img = $row['img']; 
+        $ordr = $row['ordr']; 
+        ?>
+
+						<div class="oc-item">
+							<a href="cars.php"><img class="blogo" src="images/brands/<?php echo $img ?>" alt="Image 1"></a>
+						</div>
+
+					<?php } ?>
+
+
+
+					</div>
+
+
+				</div>
+			</div>
+
+<style type="text/css">
+	.phonevid{
+		position: absolute;
+	}
+
+.kSecPg {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 130px;
+    left: 194px;
+    height: 425px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(164, 164, 165);
+    border-image: initial;
+}
+
+
+@media (min-width: 1200px){
+.kSecPg {
+	top: 130px;
+    left: 195px;
+    height: 424px;
+}
+}
+@media (min-width: 992px){
+.kSecPg {
+    display: block;
+}
+}
+
+</style>
+
+<div class="container">
+<section class="styles__FeaturesStyles-sc-998xh6-3 iHwMhM align-items-center row">
+	<div class="col-md-3" id="features-left">
+		<li class="styles__Feature-sc-998xh6-2 cxrQye"><h5 class="sc-qYhTA jGcxmv mb-3">One monthly payment</h5><p class="sc-pJwpB bIowUB mb-4">We get you a car with maintenance &amp; breakdown cover included for a flat monthly price. If you want insurance, we do that too.</p></li><li class="styles__Feature-sc-998xh6-2 cxrQye"><h5 class="sc-qYhTA jGcxmv mb-3">Flexibility</h5><p class="sc-pJwpB bIowUB mb-4">Take a car for 1-24 months. Cancel, extend or swap as your life changes.</p>
+		</li>
+	</div>
+	<div id="features-phone" class="col-md-6">
+		<span class=" lazy-load-image-background blur lazy-load-image-loaded" style="color: transparent; display: inline-block;">
+		<img src="images/iphone_mockup.png?w=600&amp;auto=compress%2Cformat" sizes="(min-width: 992px) 50vw" alt="showing drover app" style="max-width: 600px;">
+		</span>
+			<video autoplay="" loop="" playsinline="" class="kSecPg"><source src="https://production-drover-public-assets.joindrover.com/public/static/media/phoneAnimation.1807fd2f.mp4" type="video/mp4">
+			</video>
+	</div>
+		<div class="col-md-3" id="features-right">
+			<li class="styles__Feature-sc-998xh6-2 cxrQye"><h5 class="sc-qYhTA jGcxmv mb-3">Completely Online</h5><p class="sc-pJwpB bIowUB mb-4">Get your car without leaving your living room. Our fully online process makes getting a car a breeze.</p></li><li class="styles__Feature-sc-998xh6-2 cxrQye"><h5 class="sc-qYhTA jGcxmv mb-3">Modern car ownership</h5><p class="sc-pJwpB bIowUB mb-4">The joy of having your perfect car, without the downpayment, admin and hidden costs that come with it.</p>
+			</li>
+		</div>
+	</section>
+
+
+
+
+<div style="border: 1px solid #f6f6f6;    padding: 0px 15px;    background: #f3f3f3;    overflow: hidden;    border-radius: 10px; box-shadow: 5px 5px 3px #e4e4e4;">
+	<div class="row " style="padding: 10px; background:url('images/homebg.png'); background-size: cover; ">
+		<div class="col-md-8">
+			<br>
+			<?php echo $topdesp ?>
+		</div>
+		<div class="col-md-4">
+			<img src="https://drover.imgix.net/electric_cars/hp_car.png?w=373&amp;auto=compress%2Cformat" sizes="373px" alt="Electric vehicle" style="max-width: 373px;">
+		</div>
+
+	</div>
+
+</div>
+
+</div>
+
+
+
+
+	<style type="text/css">
+		.subtitle{
+			font-size: 12px;
+		}
+	</style>
+
 		<section id="content">
 
 			<div class="content-wrap">
 
-				<div class="promo promo-light promo-full bottommargin-lg header-stick notopborder">
-					<div class="container clearfix">
-						<?php echo $topdesp ?>
-					</div>
-				</div>
-
+				<br><br>
 				<div class="container clearfix">
 
 					<div class="col_one_fourth nobottommargin">
@@ -176,6 +316,29 @@ if(isset($_SESSION['user'])){
 <br>
 <hr>
 
+<style type="text/css">
+	.carcard{
+		background: #e6e6e6;
+    padding: 15px;
+    border-radius: 10px;
+	}
+	.entry:after {
+    content: '';
+    position: relative;
+    height: 2px;
+    margin-top: 0px;
+    background-color: #F5F5F5;
+    display: none;
+}
+.cardsbg{
+	background: url('images/cardsbg.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+.entry-image{
+	margin-bottom: 0px;
+}
+</style>
 		<section id="content">
 
 			<div class="content-wrap">
@@ -185,14 +348,17 @@ if(isset($_SESSION['user'])){
 						<h3> Featured Avaliable Cars: </h3>
 					</div>
 
+					<div class="row">
+					<div class="col-md-8 cardsbg">
+
 					<!-- Posts
 					============================================= -->
-					<div id="posts" class="post-grid grid-container grid-3 clearfix" data-layout="fitRows">
+					<div id="posts" class="post-grid grid-container grid-2 clearfix" data-layout="fitRows">
 
 
 						      <?php
 
-      $rows =mysqli_query($con,"SELECT * FROM car WHERE feat=1 ORDER BY id desc " ) or die(mysqli_error($con));
+      $rows =mysqli_query($con,"SELECT * FROM car WHERE feat=1 ORDER BY id desc LIMIT 4 " ) or die(mysqli_error($con));
       $n=0;
       while($row=mysqli_fetch_array($rows)){
 
@@ -219,6 +385,7 @@ if(isset($_SESSION['user'])){
         ?>
 
 						<div class="entry clearfix">
+							<div class="carcard">
 							<div class="entry-image">
 								<a href="images/cars/<?php echo $img ?>" data-lightbox="image"><img class="image_fade" src="images/cars/<?php echo $img ?>" alt="Standard Post with Image"></a>
 							</div>
@@ -241,6 +408,7 @@ if(isset($_SESSION['user'])){
 
 									<div class="col-lg-4 col-6 nopadding"><i class="icon-car-care"></i><span> <?php echo $model ?></span></div>
 								</div>
+							</div>
 						</div>
 
 					<?php } ?>
@@ -249,8 +417,25 @@ if(isset($_SESSION['user'])){
 
 
 					</div><!-- #posts end -->
+				</div>
+					<div class="col-md-4 text-center">
+						<br>
+						<br>
+						<br>
+						<h4 class="sc-qQlgh kIdLpQ">We are taking the frustration out of choosing, paying for and<b>&nbsp;owning a car.</b></h4>
 
-					<br><center><a href="cars.php" class="button button-dark button-xlarge button-rounded">View More Cars </a></center>
+						<Br>
+						<h4 class="sc-qQlgh kIdLpQ mb-2">Quality and style</h4>
+						<br>
+						<p class="sc-pJwpB bIowUB my-2">All of our cars are vetted and maintained for total peace of mind. Choose anything from a hatchback to an SUV from the comfort of your own home. 
+							<br>
+						Choose anything from a hatchback to an SUV from the comfort of your own home. All of our cars are vetted and maintained for total peace of mind. </p>
+						<br>
+						<br><center><a href="cars.php" class="button button-xlarge button-rounded" style="color: #fff !important">View More Cars </a></center>
+					</div>
+			</div>
+
+					
 
 
 
@@ -260,43 +445,8 @@ if(isset($_SESSION['user'])){
 
 		</section>
 		<br>
-		<hr>
 
-			<div class="container">
-				<br>
-					<div class="fancy-title title-center title-dotted-border">
-						<h3>Search More Cars by Brands:</h3>
-					</div>
-
-					<div id="oc-images" class="owl-carousel image-carousel carousel-widget" data-margin="20" data-nav="true" data-pagi="true" data-items-xs="2" data-items-sm="3" data-items-lg="4" data-items-xl="5">
-
- <?php
-
-      $rows =mysqli_query($con,"SELECT * FROM brands ORDER BY ordr" ) or die(mysqli_error($con));
-      $n=0;
-
-      while($row=mysqli_fetch_array($rows)){
-
-        $id = $row['id']; 
-        $name = $row['name']; 
-        $img = $row['img']; 
-        $ordr = $row['ordr']; 
-        ?>
-
-						<div class="oc-item">
-							<a href="cars.php"><img class="blogo" src="images/brands/<?php echo $img ?>" alt="Image 1"></a>
-						</div>
-
-					<?php } ?>
-
-
-
-					</div>
-
-
-				</div>
-			</div>
-
+		
 				<div class="text-center"> <h3>Or Customize you Rides as want... </h3></div>
 
 				<!-- Moving car on scroll
@@ -371,33 +521,13 @@ if(isset($_SESSION['user'])){
 
 
 
-		<hr>
 
 
 
-				<div class="section topmargin-lg">
-					<div class="container clearfix">
-
-						<div class="row">
-							<div class="col-md-6">
-
-					<?php echo $bpost ?>
-
-					</div>
-							<div class="col-md-6">
-								<img src="images/home/<?php echo $bimg ?>">
-							</div>
-					</div>
-				</div>
-			</div>
-
-<br>
-<br>
-<hr>
 <br>
 
 
-				<div class="topmargin-sm nobottommargin">
+				<div class="topmargin-sm nobottommargin hidden">
 
 					<div class="container clearfix">
 

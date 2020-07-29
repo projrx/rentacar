@@ -87,7 +87,13 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
               <br><hr><br>
             <h3> Homepage Top and Bottom Posts: </h3>
             <div class="row">
-            <div class="col-md-4">  
+        
+            <div class="col-md-8">
+            <textarea name="post" class="ckeditor">    <?php echo $post ?>  </textarea>
+
+              </div>
+
+                  <div class="col-md-4">  
 
               <br>
               <br>
@@ -98,10 +104,7 @@ data-open="click" data-menu="vertical-content-menu" data-col="2-columns">
             <input type="file" name="img" class="form-control">
 
             </div>
-            <div class="col-md-8">
-            <textarea name="post" class="ckeditor">    <?php echo $post ?>  </textarea>
-
-              </div>
+            
             </div>
             <br><br>
             <center><button type="submit" name="submit"  class="btn btn-default">Save</button></center>

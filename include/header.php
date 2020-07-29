@@ -1,4 +1,4 @@
-	<header id="header" class="full-header">
+	<header id="header" class="full-header full-header sticky-header">
 
 		<div id="header-wrap">
 
@@ -9,7 +9,7 @@
 				<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="index.php" class="standard-logo"><img src="images/<?php echo $sitelogo ?>" alt="Canvas Logo"></a>
+						<a href="index.php" class="standard-logo"><img style="width: 250px;    height: 55px;" src="images/<?php echo $sitelogo ?>" alt="Canvas Logo"></a>
 					</div><!-- #logo end -->
 
 				<!-- Primary Navigation
@@ -26,13 +26,14 @@
 							<li class="<?php if($link=='contact') echo 'current'; ?>"><a href="contact.php"><div>Contact</div></a></li>
 							
 
-						</ul>
+						
 
 						<?php if(!isset($_SESSION['userid'])) {?>
 
-						<ul>
-							<li class=""><a href="login.php"><div> <i class="icon-lock"> </i> Login / Signup </div></a></li>
-						</ul>
+						
+							<li style="background: #800e00;"><a style="color: #fff !important" href="login.php"><div>  </i> Join Today </div></a>
+							</li>
+						
 					<?php }else{ ?>
 
 						<ul>
@@ -57,6 +58,7 @@
 						</ul>
 
 					<?php } ?>
+					</ul>
 
 					</nav><!-- #primary-menu end -->
 
